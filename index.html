@@ -4,13 +4,29 @@
   <meta charset="utf-8" />
   <title>Cone Offset Calculator</title>
   <style>
-    /* Basic site-inspired styles */
+    /* Basic site-inspired styles, now with transparent background */
     body {
       font-family: "Nunito Sans", sans-serif;
-      background: #f8f8f8;
+      background: transparent;  /* Transparent body */
       color: #003b71;
       margin: 0;
       padding: 0;
+    }
+    /* Container - transparent, no shadow. */
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 20px 30px;
+    }
+
+    /* Center heading and subheading; subheading normal (not bold) */
+    h1, h3 {
+      text-align: center;
+      margin: 0;
+    }
+    h3 {
+      font-weight: normal; /* remove bold */
+      margin-bottom: 20px;
     }
 
     label {
@@ -41,20 +57,6 @@
     }
     a:hover {
       color: #f5a800;
-    }
-
-    h1, h2, h3 {
-      font-weight: 800;
-    }
-
-    /* Simple container styling so it’s centered */
-    .container {
-      max-width: 480px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .input-section {
