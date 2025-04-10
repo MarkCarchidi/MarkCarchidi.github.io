@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Cone Offset Calculator</title>
+  <style>
+    /* Global font */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e8e8e8;
+    }
+
+    /* Centered container with light background */
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #f8f8f8;
+      padding: 20px 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Heading styles */
+    h1, h3 {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-bottom: 5px;
+    }
+    h3 {
+      margin-top: 5px;
+      margin-bottom: 20px;
+      font-weight: normal;
+      color: #555;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    /* Spacing for sections */
+    .input-section {
+      margin-bottom: 15px;
+    }
+
+    .checkbox-section {
+      margin-bottom: 15px;
+    }
+
+    /* Buttons */
+    button {
+      background: #3498db;
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+
+    /* Result and note styling */
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #note {
+      margin-top: 8px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Cone Offset Calculator</h1>
+    <h3>Estimates based on Self Supporting Cones at 108°F/hr</h3>
+
+    <!-- Target Cone -->
+    <div class="input-section">
+      <label for="targetCone">Target Cone:</label><br />
+      <select id="targetCone" style="width: 100%; padding: 5px;">
+        <option value="">--Select--</option>
+        <option value="Cone 09">Cone 09</option>
+        <option value="Cone 08">Cone 08</option>
+        <option value="Cone 07">Cone 07</option>
+        <option value="Cone 06">Cone 06</option>
+        <option value="Cone 05">Cone 05</option>
+        <option value="Cone 04">Cone 04</option>
+        <option value="Cone 03">Cone 03</option>
+        <option value="Cone 02">Cone 02</option>
+        <option value="Cone 01">Cone 01</option>
+        <option value="Cone 1">Cone 1</option>
+        <option value="Cone 2">Cone 2</option>
+        <option value="Cone 3">Cone 3</option>
+        <option value="Cone 4">Cone 4</option>
+        <option value="Cone 5">Cone 5</option>
+        <option value="Cone 6">Cone 6</option>
+        <option value="Cone 7">Cone 7</option>
+        <option value="Cone 8">Cone 8</option>
+        <option value="Cone 9">Cone 9</option>
+        <option value="Cone 10">Cone 10</option>
+        <option value="Cone 11">Cone 11</option>
+        <option value="Cone 12">Cone 12</option>
+      </select>
+    </div>
+
+    <!-- Measured Cone -->
+    <div class="input-section">
+      <label for="measuredCone">Measured Cone:</label><br />
+      <select id="measuredCone" style="width: 100%; padding: 5px;">
+        <option value="">--Select--</option>
+        <option value="Cone 09">Cone 09</option>
+        <option value="Cone 08">Cone 08</option>
+        <option value="Cone 07">Cone 07</option>
+        <option value="Cone 06">Cone 06</option>
+        <option value="Cone 05">Cone 05</option>
+        <option value="Cone 04">Cone 04</option>
+        <option value="Cone 03">Cone 03</option>
+        <option value="Cone 02">Cone 02</option>
+        <option value="Cone 01">Cone 01</option>
+        <option value="Cone 1">Cone 1</option>
+        <option value="Cone 2">Cone 2</option>
+        <option value="Cone 3">Cone 3</option>
+        <option value="Cone 4">Cone 4</option>
+        <option value="Cone 5">Cone 5</option>
+        <option value="Cone 6">Cone 6</option>
+        <option value="Cone 7">Cone 7</option>
+        <option value="Cone 8">Cone 8</option>
+        <option value="Cone 9">Cone 9</option>
+        <option value="Cone 10">Cone 10</option>
+        <option value="Cone 11">Cone 11</option>
+        <option value="Cone 12">Cone 12</option>
+      </select>
+    </div>
+
+    <!-- Angle -->
+    <div class="input-section">
+      <label for="measuredAngle">Angle of Measured Cone:</label><br />
+      <select id="measuredAngle" style="width: 100%; padding: 5px;">
+        <option value="">--Select--</option>
+        <option value="<10°">&lt;10°</option>
+        <option value="10°">10°</option>
+        <option value="20°">20°</option>
+        <option value="30°">30°</option>
+        <option value="40°">40°</option>
+        <option value="50°">50°</option>
+        <option value="60°">60°</option>
+        <option value="70°">70°</option>
+        <option value="80°">80°</option>
+        <option value="90°">90°</option>
+        <option value=">90°">&gt;90°</option>
+      </select>
+    </div>
+
+    <!-- Celsius Conversion Option -->
+    <div class="checkbox-section">
+      <label>
+        <input type="checkbox" id="celsiusCheckbox" />
+        Show Offset in °C
+      </label>
+    </div>
+
+    <!-- Calculate Button -->
+    <button type="button" onclick="calculateOffset()">Calculate</button>
+
+    <!-- Result Area -->
+    <div id="result"></div>
+    <div id="note"></div>
+  </div>
+
+  <script>
+    // Target temperatures at 90° bend (°F):
+    const targetTemps = {
+      "Cone 09": 1688, "Cone 08": 1728, "Cone 07": 1789, "Cone 06": 1828,
+      "Cone 05": 1888, "Cone 04": 1945, "Cone 03": 1987, "Cone 02": 2016,
+      "Cone 01": 2046, "Cone 1": 2079,  "Cone 2": 2088,  "Cone 3": 2106,
+      "Cone 4": 2124,  "Cone 5": 2167,  "Cone 6": 2232,  "Cone 7": 2262,
+      "Cone 8": 2280,  "Cone 9": 2300,  "Cone 10": 2345, "Cone 11": 2361,
+      "Cone 12": 2383
+    };
+
+    // Bending temperatures (°F) for each cone at various angles:
+    const bendingTemps = {
+      "Cone 09": { "10": 1665, "20": 1670, "30": 1674, "40": 1677, "50": 1681,
+                   "60": 1683, "70": 1684, "80": 1686, "90": 1688 },
+      "Cone 08": { "10": 1704, "20": 1710, "30": 1713, "40": 1717, "50": 1720,
+                   "60": 1722, "70": 1724, "80": 1726, "90": 1728 },
+      "Cone 07": { "10": 1764, "20": 1771, "30": 1774, "40": 1778, "50": 1780,
+                   "60": 1783, "70": 1785, "80": 1787, "90": 1789 },
+      "Cone 06": { "10": 1801, "20": 1809, "30": 1814, "40": 1816, "50": 1819,
+                   "60": 1823, "70": 1825, "80": 1827, "90": 1828 },
+      "Cone 05": { "10": 1861, "20": 1868, "30": 1873, "40": 1875, "50": 1879,
+                   "60": 1882, "70": 1884, "80": 1886, "90": 1888 },
+      "Cone 04": { "10": 1920, "20": 1927, "30": 1931, "40": 1935, "50": 1936,
+                   "60": 1940, "70": 1942, "80": 1944, "90": 1945 },
+      "Cone 03": { "10": 1963, "20": 1969, "30": 1972, "40": 1976, "50": 1980,
+                   "60": 1981, "70": 1983, "80": 1985, "90": 1987 },
+      "Cone 02": { "10": 1992, "20": 1998, "30": 2001, "40": 2005, "50": 2008,
+                   "60": 2010, "70": 2012, "80": 2014, "90": 2016 },
+      "Cone 01": { "10": 2012, "20": 2021, "30": 2026, "40": 2032, "50": 2035,
+                   "60": 2039, "70": 2041, "80": 2044, "90": 2046 },
+      "Cone 1":  { "10": 2053, "20": 2061, "30": 2064, "40": 2068, "50": 2070,
+                   "60": 2073, "70": 2075, "80": 2077, "90": 2079 },
+      "Cone 2":  { "10": 2053, "20": 2064, "30": 2070, "40": 2073, "50": 2077,
+                   "60": 2080, "70": 2082, "80": 2086, "90": 2088 },
+      "Cone 3":  { "10": 2071, "20": 2080, "30": 2086, "40": 2091, "50": 2095,
+                   "60": 2098, "70": 2100, "80": 2104, "90": 2106 },
+      "Cone 4":  { "10": 2095, "20": 2104, "30": 2107, "40": 2111, "50": 2113,
+                   "60": 2116, "70": 2120, "80": 2122, "90": 2124 },
+      "Cone 5":  { "10": 2140, "20": 2147, "30": 2152, "40": 2154, "50": 2158,
+                   "60": 2161, "70": 2163, "80": 2165, "90": 2167 },
+      "Cone 6":  { "10": 2199, "20": 2208, "30": 2214, "40": 2217, "50": 2221,
+                   "60": 2224, "70": 2226, "80": 2230, "90": 2232 },
+      "Cone 7":  { "10": 2239, "20": 2244, "30": 2248, "40": 2251, "50": 2255,
+                   "60": 2257, "70": 2259, "80": 2260, "90": 2262 },
+      "Cone 8":  { "10": 2253, "20": 2260, "30": 2266, "40": 2268, "50": 2271,
+                   "60": 2275, "70": 2277, "80": 2278, "90": 2280 },
+      "Cone 9":  { "10": 2273, "20": 2280, "30": 2286, "40": 2287, "50": 2291,
+                   "60": 2295, "70": 2296, "80": 2298, "90": 2300 },
+      "Cone 10": { "10": 2318, "20": 2325, "30": 2331, "40": 2332, "50": 2336,
+                   "60": 2340, "70": 2341, "80": 2343, "90": 2345 },
+      "Cone 11": { "10": 2334, "20": 2341, "30": 2347, "40": 2349, "50": 2352,
+                   "60": 2356, "70": 2358, "80": 2359, "90": 2361 },
+      "Cone 12": { "10": 2356, "20": 2363, "30": 2368, "40": 2370, "50": 2374,
+                   "60": 2377, "70": 2379, "80": 2381, "90": 2383 }
+    };
+
+    function calculateOffset() {
+      // Clear any previous messages
+      document.getElementById("result").innerText = "";
+      document.getElementById("note").innerText = "";
+
+      // Get the selected values
+      const targetCone = document.getElementById("targetCone").value;
+      const measuredCone = document.getElementById("measuredCone").value;
+      const measuredAngle = document.getElementById("measuredAngle").value;
+      const celsiusCheckbox = document.getElementById("celsiusCheckbox");
+
+      // Check if all selections are made
+      if (!targetCone || !measuredCone || !measuredAngle) {
+        document.getElementById("result").innerText =
+          "Please select all three values to calculate.";
+        return;
+      }
+
+      // Special angles
+      if (measuredAngle === "<10°") {
+        document.getElementById("result").innerText =
+          "Cone angle too low. Measure the next lower cone.";
+        return;
+      }
+      if (measuredAngle === ">90°") {
+        document.getElementById("result").innerText =
+          "Cone angle too high. Measure the next higher cone.";
+        return;
+      }
+
+      // Convert angle to number (e.g. "10°" -> "10")
+      const numericAngle = measuredAngle.replace("°", "");
+
+      // Lookup target temp and measured temp
+      const T_target = targetTemps[targetCone];
+      const T_measured = bendingTemps[measuredCone][numericAngle];
+
+      // Offset in Fahrenheit
+      const offsetF = T_target - T_measured;
+
+      // Build result text
+      let resultText = "";
+      if (celsiusCheckbox.checked) {
+        // For a temperature difference, 1°F ~ 0.5556°C
+        const offsetC = Math.round((offsetF * 5/9) * 10) / 10; // 1 decimal
+        // Show both
+        resultText = `Recommended Cone Offset: ${
+          offsetF >= 0 ? "+" : ""
+        }${offsetF}°F (${offsetC >= 0 ? "+" : ""}${offsetC}°C)`;
+      } else {
+        // Show only Fahrenheit
+        resultText = `Recommended Cone Offset: ${offsetF >= 0 ? "+" : ""}${offsetF}°F`;
+      }
+
+      document.getElementById("result").innerText = resultText;
+
+      // Check if offset exceeds ±99°F
+      if (offsetF < -99 || offsetF > 99) {
+        document.getElementById("note").innerText =
+          "Note: This exceeds the offset limit of ±99°F.";
+      }
+    }
+  </script>
+</body>
+</html>
