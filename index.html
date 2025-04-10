@@ -4,69 +4,65 @@
   <meta charset="utf-8" />
   <title>Cone Offset Calculator</title>
   <style>
-    /* Global font */
+    /* Basic site-inspired styles */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #e8e8e8;
-    }
-
-    /* Centered container with light background */
-    .container {
-      max-width: 480px;
-      margin: 40px auto;
+      font-family: "Nunito Sans", sans-serif;
       background: #f8f8f8;
-      padding: 20px 30px;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    /* Heading styles */
-    h1, h3 {
-      text-align: center;
+      color: #003b71;
       margin: 0;
       padding: 0;
-    }
-    h1 {
-      margin-bottom: 5px;
-    }
-    h3 {
-      margin-top: 5px;
-      margin-bottom: 20px;
-      font-weight: normal;
-      color: #555;
     }
 
     label {
       font-weight: bold;
     }
 
-    /* Spacing for sections */
+    select,
+    button {
+      font-size: 16px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-family: inherit; /* Match body font */
+    }
+
+    button {
+      background: #003b71;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #002955;
+    }
+
+    a {
+      color: #003b71;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #f5a800;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+    }
+
+    /* Simple container styling so it’s centered */
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
     .input-section {
       margin-bottom: 15px;
     }
-
     .checkbox-section {
       margin-bottom: 15px;
     }
-
-    /* Buttons */
-    button {
-      background: #3498db;
-      color: #fff;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      padding: 8px 16px;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-    button:hover {
-      background: #2980b9;
-    }
-
-    /* Result and note styling */
     #result {
       margin-top: 15px;
       font-weight: bold;
@@ -81,12 +77,13 @@
 
   <div class="container">
     <h1>Cone Offset Calculator</h1>
-    <h3>Estimates based on Self Supporting Cones at 108°F/hr</h3>
+    <h3>Calculated for Self-Supporting Cones at 108°F/hr
+(Medium-Slow speed on the Genesis)</h3>
 
     <!-- Target Cone -->
     <div class="input-section">
       <label for="targetCone">Target Cone:</label><br />
-      <select id="targetCone" style="width: 100%; padding: 5px;">
+      <select id="targetCone" style="width: 100%;">
         <option value="">--Select--</option>
         <option value="Cone 09">Cone 09</option>
         <option value="Cone 08">Cone 08</option>
@@ -115,7 +112,7 @@
     <!-- Measured Cone -->
     <div class="input-section">
       <label for="measuredCone">Measured Cone:</label><br />
-      <select id="measuredCone" style="width: 100%; padding: 5px;">
+      <select id="measuredCone" style="width: 100%;">
         <option value="">--Select--</option>
         <option value="Cone 09">Cone 09</option>
         <option value="Cone 08">Cone 08</option>
@@ -144,9 +141,8 @@
     <!-- Angle -->
     <div class="input-section">
       <label for="measuredAngle">Angle of Measured Cone:</label><br />
-      <select id="measuredAngle" style="width: 100%; padding: 5px;">
+      <select id="measuredAngle" style="width: 100%;">
         <option value="">--Select--</option>
-        <option value="<10°">&lt;10°</option>
         <option value="10°">10°</option>
         <option value="20°">20°</option>
         <option value="30°">30°</option>
@@ -156,7 +152,6 @@
         <option value="70°">70°</option>
         <option value="80°">80°</option>
         <option value="90°">90°</option>
-        <option value=">90°">&gt;90°</option>
       </select>
     </div>
 
@@ -248,18 +243,6 @@
       if (!targetCone || !measuredCone || !measuredAngle) {
         document.getElementById("result").innerText =
           "Please select all three values to calculate.";
-        return;
-      }
-
-      // Special angles
-      if (measuredAngle === "<10°") {
-        document.getElementById("result").innerText =
-          "Cone angle too low. Measure the next lower cone.";
-        return;
-      }
-      if (measuredAngle === ">90°") {
-        document.getElementById("result").innerText =
-          "Cone angle too high. Measure the next higher cone.";
         return;
       }
 
